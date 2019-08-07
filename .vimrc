@@ -88,3 +88,49 @@ noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 10, 3)<CR>
  
 " delimitMate
 let delimitMate_expand_cr=1
+
+"============= ctags 설정 =======================
+set tags=./tags,../tags,../../tags,/usr/include/tags,/usr/local/include/tags
+
+if version >= 500
+    func! Sts()
+        let st = expand("<cword>")
+        exe "sts ".st
+    endfunc
+    nmap ,st :call Sts()<cr>
+
+    func! Tj()
+        let st = expand("<cword>")
+        exe "tj ".st
+    endfunc
+    nmap ,tj :call Tj()<cr>
+endif
+
+
+"============= 파일 버퍼 간 이동 ================
+map ,1 :b!1<CR>             " 1번 파일 버퍼로 이동
+map ,2 :b!2<CR>             " 2번 파일 버퍼로 이동
+map ,3 :b!3<CR>             " 3번 파일 버퍼로 이동
+map ,4 :b!4<CR>             " 4번 파일 버퍼로 이동
+map ,5 :b!5<CR>             " 5번 파일 버퍼로 이동
+map ,6 :b!6<CR>             " 6번 파일 버퍼로 이동
+map ,7 :b!7<CR>             " 7번 파일 버퍼로 이동
+map ,8 :b!8<CR>             " 8번 파일 버퍼로 이동
+map ,9 :b!9<CR>             " 9번 파일 버퍼로 이동
+map ,0 :b!0<CR>             " 10번 파일 버퍼로 이동
+map ,x :bn!<CR>             " 다음 파일 버퍼로 이동
+map ,z :bp!<CR>             " 이전 파일 버퍼로 이동
+map ,w :bw<CR>             " 현재 파일 버퍼를 닫음
+
+"============== key 매핑 ========================
+map <F5> v]}zf              " 폴딩
+map <F6> zo                 " 폴딩 해제
+map <F3> :Tlist<cr><C-W><C-W>   " taglist
+map <F4> :BufExplorer<cr>       " BufExplorer
+
+"==================== man page 설정 ==================
+func! Man()
+    let sm = expand("<cword>")
+    exe "!man -S 2:3:4:5:6:7:8:9:tcl:n:l:p:o ".sm
+endfunc
+nmap ,ma :call Man()<cr><cr>
